@@ -30,12 +30,18 @@ function applyShake() {
   requestAnimationFrame(applyShake);
 }
 
-document.addEventListener("mousemove", getMousePosition);
-document.addEventListener("touchmove", getMousePosition);
-document.addEventListener("touchstart", getMousePosition);
+// Настраиваем обработчики событий в зависимости от устройства
+if (isTouchDevice()) {
+  // На мобильных устройствах обновляем позицию только при начальном касании
+  document.addEventListener("touchstart", getMousePosition);
+} else {
+  // На компьютере продолжаем отслеживать движение мыши
+  document.addEventListener("mousemove", getMousePosition);
+}
 
 // Запускаем функцию с эффектом тряски
 applyShake();
+
 
 
 
