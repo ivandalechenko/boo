@@ -67,3 +67,65 @@ document.addEventListener('mousemove', (e) => {
   htb.style.backgroundPosition = `${50 + offsetX}% ${50 + offsetY}%`;
   chest.style.backgroundPosition = `${50 + offsetX}% ${50 + offsetY}%`;
 });
+
+
+
+// Получаем элементы
+const audio = document.getElementById('backgroundAudio');
+const soundImg = document.getElementById('soundImg');
+
+let isFirstPlayAttempt = true;  // Флаг, указывающий на первый запуск
+let isPlaying = false;          // Состояние музыки
+
+// Функция для плавного увеличения громкости
+function fadeInAudio() {
+  audio.volume = 0;  // Устанавливаем начальную громкость
+  audio.play();
+  soundImg.src = '/img/music.svg';
+
+  let volumeIncrease = setInterval(() => {
+    if (audio.volume < 1) {
+      audio.volume = Math.min(audio.volume + 0.05, 1);  // Увеличиваем громкость
+    } else {
+      clearInterval(volumeIncrease);  // Останавливаем увеличение при достижении полной громкости
+    }
+  }, 200);  // Интервал плавного повышения громкости
+}
+
+// Обработчик первого клика в любом месте документа для запуска музыки
+function startMusicOnFirstClick() {
+  if (isFirstPlayAttempt) {
+    isFirstPlayAttempt = false;  // Сбрасываем флаг, чтобы сработал только один раз
+    fadeInAudio();
+    isPlaying = true;
+    document.removeEventListener('click', startMusicOnFirstClick);  // Удаляем обработчик
+  }
+}
+
+// Попытка автоматического запуска при загрузке страницы
+window.addEventListener('load', () => {
+  audio.play().then(() => {
+    isPlaying = true;  // Если музыка запустилась, обновляем состояние
+  }).catch(() => {
+    console.log("Автозапуск заблокирован. Ожидаем взаимодействия.");
+    document.addEventListener('click', startMusicOnFirstClick);  // Добавляем обработчик для первого клика
+  });
+});
+
+// Переключение паузы и воспроизведения по нажатию на soundImg
+soundImg.addEventListener('click', () => {
+  if (isPlaying) {
+    audio.pause();
+    isPlaying = false;
+    soundImg.src = '/img/noMusic.svg';
+  } else {
+    if (isFirstPlayAttempt) {
+      fadeInAudio();
+      isFirstPlayAttempt = false;
+    } else {
+      audio.play();
+      soundImg.src = '/img/music.svg';
+    }
+    isPlaying = true;
+  }
+});

@@ -3,6 +3,7 @@ name: Backend deployment to server
 
 on:
   push:
+    branches:
       - 'master'
 
 jobs:
