@@ -46,7 +46,7 @@ function blinkFlashlight() {
   setTimeout(blinkFlashlight, Math.random() * 500);
 }
 
-// blinkFlashlight();
+blinkFlashlight();
 
 
 
