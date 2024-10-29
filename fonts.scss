@@ -1,0 +1,25 @@
+@font-face {
+    font-family: 'comics';
+    src: url('/fonts/comics.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'comics';
+    src: url('/fonts/comicsBold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'growl';
+    src: url('/fonts/growl.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+
+// src: url('/fonts/comics.ttf') format('truetype'),
+// url('fonts/my-font.otf') format('opentype');

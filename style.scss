@@ -1,0 +1,21 @@
+@use 'fonts';
+@use 'null';
+@use 'flashlight';
+@use 'header';
+@use 'hero';
+@use 'line';
+@use 'cave';
+@use 'htb';
+@use 'chest';
+
+
+#app {
+    width: 100%;
+    overflow: hidden;
+}
+
+body {
+    // background-color: #fff;
+    background-color: #000;
+    color: #000;
+}

@@ -1,0 +1,18 @@
+.line {
+    min-width: 120vw;
+    min-height: 70px;
+    background-color: #fff;
+    border: 10px solid #242424;
+
+    &_l {
+        transform: rotate(-2deg);
+    }
+
+    &_r {
+        transform: rotate(2deg);
+    }
+
+    &_wrapper {
+        width: 100% !important;
+    }
+}
